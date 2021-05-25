@@ -1,0 +1,7 @@
+woff_file/*
+
+*.jpg
+
+__pycache__
+
+.idea

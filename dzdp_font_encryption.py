@@ -23,14 +23,14 @@ class DaZhongDianPing():
         self.referer = self.url.replace('/review_all', '')
         self.timeout = 10
         self.headers = {
-              'Connection': 'keep-alive',
-              'Pragma': 'no-cache',
-              'Cache-Control': 'no-cache',
-              'Upgrade-Insecure-Requests': '1',
-              'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36',
-              'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-              'Accept-Language': 'zh-CN,zh;q=0.9',
-              'Cookie': ''
+            'Connection': 'keep-alive',
+            'Pragma': 'no-cache',
+            'Cache-Control': 'no-cache',
+            'Upgrade-Insecure-Requests': '1',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'Accept-Language': 'zh-CN,zh;q=0.9',
+            'Cookie': ''
         }
 
     def get_woffs(self):
@@ -83,8 +83,9 @@ class DaZhongDianPing():
             text = "".join(newList)
             text = text.encode('utf-8').decode('unicode_escape')
             dr.text((0, 50 * t), text, font=font, fill="#000000")
-        im.save("font.jpg")
-        im = Image.open("font.jpg")
+        images_name = 'font.jpg'
+        im.save(images_name)
+        im = Image.open(images_name)
         result = pytesseract.image_to_string(im, lang="chi_sim")
         result = result.replace(" ", "").replace("\n", "")
         codeList = [i.replace("uni", "&#x") + ";" for i in codeList]
