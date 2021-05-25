@@ -64,7 +64,7 @@ pip3 install -r requirements.txt -i https://pypi.douban.com/simple
 - pytesseract 下载地址：https://digi.bib.uni-mannheim.de/tesseract/tesseract-ocr-w64-setup-v5.0.0-alpha.20200328.exe
 - 安装完成后，新增系统变量： `TESSDATA_PREFIX: C:\Program Files\Tesseract-OCR` (安装目录)
 - 修改 `当前 python 解释器所在目录\Lib\site-packages\pytesseract\pytesseract.py` 中的 `tesseract_cmd`  变量值为 `tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'`
-- 下载简体中文训练集（https://raw.githubusercontent.com/tesseract-ocr/tessdata/4.00/chi_sim.traineddata），并拷贝到 `C:\Program Files\Tesseract-OCR\tessdata`  目录下
+- 下载简体中文训练集下载地址：https://raw.githubusercontent.com/tesseract-ocr/tessdata/4.00/chi_sim.traineddata，并拷贝到 `C:\Program Files\Tesseract-OCR\tessdata`  目录下
 
 
 

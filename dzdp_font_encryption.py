@@ -51,6 +51,9 @@ class DaZhongDianPing():
             print(result)
 
             self.woff_dc = dict(result)
+            if not os.path.exists('woff_file'):
+                os.mkdir('woff_file')
+
             for woff_url in result:
                 url = 'http:' + woff_url[1]
                 res = requests.get(url, headers=headers)
