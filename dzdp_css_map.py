@@ -6,7 +6,7 @@ import random
 
 
 class DaZhongDianPing:
-    def __init__(self, shop_review_url):
+    def __init__(self, shop_review_url, user_cookie):
         # 商家评论详情页 url
         self.url = shop_review_url
         # 商家评论详情页源码
@@ -39,7 +39,7 @@ class DaZhongDianPing:
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
             'Referer': self.url.replace('/review_all', ''),
             'Accept-Language': 'zh-CN,zh;q=0.9',
-            'Cookie': 'fspop=test; cy=7; cye=shenzhen; _lxsdk_cuid=1799ebb70e8c8-02bf125c174d22-57442618-168000-1799ebb70e8c8; _lxsdk=1799ebb70e8c8-02bf125c174d22-57442618-168000-1799ebb70e8c8; _hc.v=edc99a7c-4108-2b28-e1d8-5f04bedfe82a.1621865755; dplet=00a4b2e945f1bcb2e4decd7791c923a8; dper=f8c5e1ab530f4588dd093ae86e82bb077a4ae583e4f33e3e4f1b43d78296920d9bf15b64f9f91bb9a4d9f5cfe511c463283f5aede0b7143cacec810286ef336cbc872ae8926de49fb2972fd20a749f7e47fcfca6b15c46440a0cc7913da96227; ua=%E7%8C%AE%E5%B8%9D; ctu=b07635fe37057a2f031ea69b1f744a299c1559185c5c4bb9c7ad2b9f7b5bb121; aburl=1; ll=7fd06e815b796be3df069dec7836c3df; _lx_utm=utm_source%3DBaidu%26utm_medium%3Dorganic; Hm_lvt_602b80cf8079ae6591966cc70a3940e7=1621865755,1621909658; s_ViewType=10; Hm_lpvt_602b80cf8079ae6591966cc70a3940e7=1621912435; _lxsdk_s=179a1804b43-150-ddd-9fb%7C%7C153'
+            'Cookie': user_cookie
         }
 
     def get_svg_html(self):
@@ -198,7 +198,7 @@ class DaZhongDianPing:
             ' ', '')
         print(f'地址：{shop_address}\n电话：{shop_tell}')
 
-    def get_user_info(self):
+    def get_info(self):
         # 将 self.html 评论区域加密的 class 样式替换成对应的中文字符
         review_class_set = re.findall('<svgmtsi class="(.*?)"></svgmtsi>', self.html, re.S)
         for class_name in review_class_set:
@@ -236,10 +236,11 @@ class DaZhongDianPing:
         self.get_svg_html()
         self.get_font_map()
         self.get_shop_info()
-        self.get_user_info()
+        self.get_info()
 
 
 if __name__ == '__main__':
     url = 'http://www.dianping.com/shop/G9TSD2JvdLtA7fdm/review_all'
-    dz = DaZhongDianPing(url)
+    user_cookie = ''
+    dz = DaZhongDianPing(url, user_cookie)
     dz.run()
